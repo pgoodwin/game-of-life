@@ -21,4 +21,50 @@ class LifeTest {
         assertThat(life.neighborsOf(new Cell(1, 1)).size(), is(8));
         assertThat(life.neighborsOf(new Cell(2, 2)).size(), is(3));
     }
+
+    @Test
+    void example2() {
+        var cells = new Life().iterate(Life.example2);
+        assertThat(cells, equalTo(new char[][]{
+                {'X', 'X', '_'},
+                {'X', 'X', '_'},
+                {'_', '_', '_'}
+        }));
+    }
+
+    @Test
+    void example3() {
+        var cells = new Life().iterate(Life.example3);
+        assertThat(cells, equalTo(new char[][]{
+                {'X', 'X', 'X'},
+                {'_', '_', '_'},
+                {'_', '_', '_'}
+        }));
+    }
+
+    @Test
+    void example4() {
+        var cells = new Life().iterate(Life.example4);
+        assertThat(cells, equalTo(new char[][]{
+                {'X', 'X', 'X'},
+                {'X', 'X', 'X'},
+                {'_', '_', '_'}
+        }));
+    }
+
+    @Test
+    void example4bigger() {
+        var cells = new Life().iterate(new char[][]{
+                {'_', '_', '_', '_', '_'},
+                {'_', 'X', 'X', 'X', '_'},
+                {'_', '_', 'X', '_', '_'},
+                {'_', '_', '_', '_', '_'}
+        });
+        assertThat(cells, equalTo(new char[][]{
+                {'_', '_', 'X', '_', '_'},
+                {'_', 'X', 'X', 'X', '_'},
+                {'_', 'X', 'X', 'X', '_'},
+                {'_', '_', '_', '_', '_'}
+        }));
+    }
 }

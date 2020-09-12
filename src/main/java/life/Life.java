@@ -1,8 +1,8 @@
 package life;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 class Life {
     static private char ACTIVE = 'X';
@@ -58,6 +58,7 @@ class Life {
     public Life() {
     }
 
+    // for testing
     public Life(char[][] template) {
         cells = template;
     }
@@ -95,11 +96,10 @@ class Life {
 
     public char[][] iterate(char[][] initialCells) {
         cells = initialCells;
-        nextCells = new char[][]{
-                {INACTIVE, INACTIVE, INACTIVE},
-                {INACTIVE, INACTIVE, INACTIVE},
-                {INACTIVE, INACTIVE, INACTIVE}
-        };
+        nextCells = new char[cells.length][cells[0].length];
+        for(var row : nextCells) {
+            Arrays.fill(row, INACTIVE);
+        }
 
         for (int x = 0; x < initialCells.length; x++) {
             for (int y = 0; y < initialCells[x].length; y++) {
@@ -158,36 +158,5 @@ class Life {
         }
 
         return neighbors;
-    }
-}
-
-class Cell {
-    public int x, y;
-
-    public Cell(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cell cell = (Cell) o;
-        return x == cell.x &&
-                y == cell.y;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
-
-    @Override
-    public String toString() {
-        return "Cell{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
     }
 }
