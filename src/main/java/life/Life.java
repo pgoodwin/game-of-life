@@ -5,54 +5,52 @@ import java.util.Arrays;
 import java.util.List;
 
 class Life {
-    static private char ACTIVE = 'X';
-    static private char INACTIVE = '_';
     static public char empty[][] = {
-            {INACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE}
+            {'_', '_', '_'},
+            {'_', '_', '_'},
+            {'_', '_', '_'}
     };
     static public char centerActive[][] = {
-            {INACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, ACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE}
+            {'_', '_', '_'},
+            {'_', 'X', '_'},
+            {'_', '_', '_'}
     };
 
     static public char topLeftActive[][] = {
-            {ACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE}
+            {'X', '_', '_'},
+            {'_', '_', '_'},
+            {'_', '_', '_'}
     };
 
     static public char topRightActive[][] = {
-            {INACTIVE, INACTIVE, ACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE}
+            {'_', '_', 'X'},
+            {'_', '_', '_'},
+            {'_', '_', '_'}
     };
 
     static public char example2[][] = {
-            {ACTIVE, ACTIVE, INACTIVE},
-            {INACTIVE, ACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE}
+            {'X', 'X', '_'},
+            {'_', 'X', '_'},
+            {'_', '_', '_'}
     };
 
     static public char example3[][] = {
-            {ACTIVE, ACTIVE, ACTIVE},
-            {INACTIVE, ACTIVE, INACTIVE},
-            {INACTIVE, ACTIVE, INACTIVE}
+            {'X', 'X', 'X'},
+            {'_', 'X', '_'},
+            {'_', 'X', '_'}
     };
 
     static public char example4[][] = {
-            {ACTIVE, ACTIVE, ACTIVE},
-            {INACTIVE, ACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE}
+            {'X', 'X', 'X'},
+            {'_', 'X', '_'},
+            {'_', '_', '_'}
     };
 
     private char cells[][];
     private char nextCells[][] = {
-            {INACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE},
-            {INACTIVE, INACTIVE, INACTIVE}
+            {'_', '_', '_'},
+            {'_', '_', '_'},
+            {'_', '_', '_'}
     };
 
     public Life() {
@@ -98,7 +96,7 @@ class Life {
         cells = initialCells;
         nextCells = new char[cells.length][cells[0].length];
         for(var row : nextCells) {
-            Arrays.fill(row, INACTIVE);
+            Arrays.fill(row, '_');
         }
 
         for (int x = 0; x < initialCells.length; x++) {
@@ -136,11 +134,11 @@ class Life {
     }
 
     private void becomeActive(Cell cell) {
-        nextCells[cell.x][cell.y] = ACTIVE;
+        nextCells[cell.x][cell.y] = 'X';
     }
 
     private boolean isActive(Cell cell) {
-        return cells[cell.x][cell.y] == ACTIVE;
+        return cells[cell.x][cell.y] == 'X';
     }
 
     List<Cell> neighborsOf(Cell cell) {
