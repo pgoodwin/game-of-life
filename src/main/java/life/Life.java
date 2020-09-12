@@ -2,6 +2,7 @@ package life;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 class Life {
     static private char ACTIVE = 'X';
@@ -54,10 +55,6 @@ class Life {
             { INACTIVE, INACTIVE, INACTIVE}
     };
 
-    public Life(char[][] initialState) {
-        cells = initialState;
-    }
-
     public static void main(String args[]) {
         run(topLeftActive);
         run(topRightActive);
@@ -66,46 +63,51 @@ class Life {
         run(example4);
     }
 
-    public static void run(char[][] cells) {
-        Life life = new Life(cells);
+    public static void run(char[][] initialCells) {
+        Life life = new Life();
 
-        life.print();
+        life.print(initialCells);
 
         System.out.println("\n----------------------------------------------\n");
 
-        life.iterate();
+        var cells = life.iterate(initialCells);
 
-        life.print();
+        life.print(cells);
 
         System.out.println("\n==============================================\n");
     }
 
-    private void iterate() {
+    public void print(char[][] cells) {
+        for (char[] row : cells) {
+            for (char cell : row) {
+                System.out.print(cell);
+            }
+            System.out.println();
+        }
+    }
+
+    public char[][] iterate(char[][] initialCells) {
+        cells = initialCells;
+        nextCells = new char[][]{
+                {INACTIVE, INACTIVE, INACTIVE},
+                {INACTIVE, INACTIVE, INACTIVE},
+                {INACTIVE, INACTIVE, INACTIVE}
+        };
+
         for (int x=0; x < 3; x++) {
             for (int y=0; y < 3; y++) {
                 applyRules(new Cell(x, y));
             }
         }
-
-        cells = nextCells;
-        nextCells = new char[][] {
-                { INACTIVE, INACTIVE, INACTIVE},
-                { INACTIVE, INACTIVE, INACTIVE},
-                { INACTIVE, INACTIVE, INACTIVE}
-        };
+        
+        return nextCells;
     }
 
     private void applyRules(Cell cell) {
         int active = activeNeighborCount(cell);
         if (isActive(cell)) {
-            if (activeNeighborCount(cell) > 3) {
-                becomeInactive(cell);
-            }
             if (active == 2 || active == 3) {
                 becomeActive(cell);
-            }
-            if (activeNeighborCount(cell) < 2) {
-                becomeInactive(cell);
             }
         } else {
             if (active == 3) {
@@ -175,5 +177,27 @@ class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cell cell = (Cell) o;
+        return x == cell.x &&
+                y == cell.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
