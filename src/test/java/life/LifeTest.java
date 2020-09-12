@@ -24,8 +24,11 @@ class LifeTest {
 
     @Test
     void example2() {
-        var cells = new Life().iterate(Life.example2);
-        assertThat(cells, equalTo(new char[][]{
+        assertThat(new Life().iterate(new char[][]{
+                {'X', 'X', '_'},
+                {'_', 'X', '_'},
+                {'_', '_', '_'}
+        }), equalTo(new char[][]{
                 {'X', 'X', '_'},
                 {'X', 'X', '_'},
                 {'_', '_', '_'}
@@ -34,8 +37,11 @@ class LifeTest {
 
     @Test
     void example3() {
-        var cells = new Life().iterate(Life.example3);
-        assertThat(cells, equalTo(new char[][]{
+        assertThat(new Life().iterate(new char[][]{
+                {'X', 'X', 'X'},
+                {'_', 'X', '_'},
+                {'_', 'X', '_'}
+        }), equalTo(new char[][]{
                 {'X', 'X', 'X'},
                 {'_', '_', '_'},
                 {'_', '_', '_'}
@@ -44,8 +50,11 @@ class LifeTest {
 
     @Test
     void example4() {
-        var cells = new Life().iterate(Life.example4);
-        assertThat(cells, equalTo(new char[][]{
+        assertThat(new Life().iterate(new char[][]{
+                {'X', 'X', 'X'},
+                {'_', 'X', '_'},
+                {'_', '_', '_'}
+        }), equalTo(new char[][]{
                 {'X', 'X', 'X'},
                 {'X', 'X', 'X'},
                 {'_', '_', '_'}
@@ -54,13 +63,12 @@ class LifeTest {
 
     @Test
     void example4bigger() {
-        var cells = new Life().iterate(new char[][]{
+        assertThat(new Life().iterate(new char[][]{
                 {'_', '_', '_', '_', '_'},
                 {'_', 'X', 'X', 'X', '_'},
                 {'_', '_', 'X', '_', '_'},
                 {'_', '_', '_', '_', '_'}
-        });
-        assertThat(cells, equalTo(new char[][]{
+        }), equalTo(new char[][]{
                 {'_', '_', 'X', '_', '_'},
                 {'_', 'X', 'X', 'X', '_'},
                 {'_', 'X', 'X', 'X', '_'},

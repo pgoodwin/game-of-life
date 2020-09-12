@@ -28,19 +28,19 @@ class Life {
             {'_', '_', '_'}
     };
 
-    static public char example2[][] = {
+    static public char[][] example2 = {
             {'X', 'X', '_'},
             {'_', 'X', '_'},
             {'_', '_', '_'}
     };
 
-    static public char example3[][] = {
+    static public char[][] example3 = {
             {'X', 'X', 'X'},
             {'_', 'X', '_'},
             {'_', 'X', '_'}
     };
 
-    static public char example4[][] = {
+    static public char[][] example4 = {
             {'X', 'X', 'X'},
             {'_', 'X', '_'},
             {'_', '_', '_'}
